@@ -60,6 +60,43 @@
             )
         }
 
+        function Checkbox() {
+            return (
+                <>
+                    <div className='form__campo-checkbox'>
+                        <input type='checkbox' id='lembrar' />
+                        <label for='lembrar' />
+                    </div>
+                    <p className='form__opcoes-texto'>Lembrar-me</p>
+                </>
+            )
+        }
+
+        function Texto({classe, children}) {
+            return (
+                <p className={classe}>{children}</p>
+            )
+        }
+
+        function ItemRedesSociais({link, nome}) {
+            return (
+                <li>
+                    <a href={link}>
+                        <img src={`img/${nome}.svg`} alt={`icone do ${nome}`} />
+                        {nome}
+                    </a>
+                </li>
+            )
+        }
+
+        function Link({children}) {
+            return (
+                <a href='#' className='container-links__link'>
+                    {children}
+                </a>
+            )
+        }
+
         function PaginaDeLogin() {
             const [email, setEmail] = React.useState('')
             const [password, setPassword] = React.useState('')
@@ -87,9 +124,29 @@
                                 tipo='password'
                                 placeholder='Digite sua senha' 
                                 value={password}
-                                setValor={setPassword}/>
+                                setValor={setPassword}
+                            />
+                            <fieldset className='form__opcoes'>
+                                <Checkbox />
+                                <p>
+                                    <a href="#" arial-label='Recuperar senha esquecida'>Esqueci a senha</a>
+                                </p>    
+                            </fieldset>
                             <Botao>Login</Botao>
                         </form>
+                        <div className='container-links'>
+                            <Texto classe='container-links__titulo'>Ou entre com outas contas</Texto>
+                            <ul>
+                                <ItemRedesSociais link='https://github.com'
+                                    nome='Github'
+                                />
+                                <ItemRedesSociais link='https://google.com'
+                                    nome='Google'
+                                />
+                            </ul>
+                            <Texto className='container-links__texto'>Ainda não tem conta?</Texto>
+                            <Link>Crie seu cadastro!</Link>  
+                        </div>
                     </section>
                 </div>
             )
